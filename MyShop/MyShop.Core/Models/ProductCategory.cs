@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace MyShop.Core.Models
 {
-    public class ProductCategory
+    public class ProductCategory:BaseEntity
     {
-        public string Id { get; set; }
+        //public string Id { get; set; }, base entity already has an Id
         public string Category { get; set; }
 
-        //constructor to generate Id whenever a category is created
-        public ProductCategory ()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
+        //constructor to generate Id whenever a category is created, base entity already has an Id
+        //public ProductCategory ()
+        //{
+        //    this.Id = Guid.NewGuid().ToString();
+        //}
     }
 }
