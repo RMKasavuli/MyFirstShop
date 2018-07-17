@@ -8,7 +8,7 @@ using MyShop.Core.Models;
 
 namespace MyShop.DataAccess.InMemory
 {
-    public class ProductRepository
+    public class ProductRepository//somo
     {
         ObjectCache cache = MemoryCache.Default;
         List<Product> products = new List<Product>();
