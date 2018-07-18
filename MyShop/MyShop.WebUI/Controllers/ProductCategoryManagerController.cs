@@ -44,7 +44,6 @@ namespace MyShop.WebUI.Controllers
 
                 return RedirectToAction("Index");//redirect to Index page, to view the updated list
             }
-
         }
 
         //edit product category
@@ -60,13 +59,11 @@ namespace MyShop.WebUI.Controllers
             {
                 return View(productCategory);
             }
-
         }
 
         [HttpPost]//getting info from a page
         public ActionResult Edit(ProductCategory productCategory, string Id)//to edit the product
         {
-
             ProductCategory productCategoryToEdit = context.Find(Id);
             if (productCategoryToEdit == null)
             {
@@ -91,7 +88,6 @@ namespace MyShop.WebUI.Controllers
 
                     return RedirectToAction("Index");//redirect to Index page, to view the updated list
                 }
-
             }
         }
 
@@ -106,7 +102,6 @@ namespace MyShop.WebUI.Controllers
             {
                 return View(productCategoryToDelete);
             }
-
         }
 
         [HttpPost]
@@ -124,7 +119,6 @@ namespace MyShop.WebUI.Controllers
                 context.Commit();//refresh cache memory
                 return RedirectToAction("Index");//redirect to Index page, to view the updated list
             }
-
         }
 
     }
