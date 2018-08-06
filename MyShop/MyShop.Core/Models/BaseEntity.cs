@@ -14,7 +14,7 @@ namespace MyShop.Core.Models
         public BaseEntity()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.CreateAt = DateTime.Now;
+            this.CreateAt = DateTime.Now;//
         }
     }
 }
