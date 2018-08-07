@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -38,7 +39,7 @@ namespace MyShop.WebUI.Controllers
         }
 
         [HttpPost]//getting info from a page
-        public ActionResult Create(Product product)//to fill in the details
+        public ActionResult Create(Product product,HttpPostedFileBase file)//to fill in the details
         {
             if (!ModelState.IsValid )
             {
@@ -46,6 +47,13 @@ namespace MyShop.WebUI.Controllers
             }
             else
             {
+                //from postedfile
+                if (file != null)
+                {
+                    product.Image = product.Id + Path.GetExtension(file.FileName);//remane to always have a unique file reference
+                    file.SaveAs(Server.MapPath("//Content//ProductImages//") + product.Image);//save the product image into the ProductImages folder
+                }
+                //
                 context.Insert(product);//add product to cache memory
                 context.Commit();//refresh cache memory
 
@@ -76,7 +84,7 @@ namespace MyShop.WebUI.Controllers
         }
 
         [HttpPost]//getting info from a page
-        public ActionResult Edit(Product product, string Id)//to edit the product
+        public ActionResult Edit(Product product, string Id, HttpPostedFileBase file)//to edit the product
         {
 
             Product productToEdit = context.Find(Id);
@@ -90,19 +98,26 @@ namespace MyShop.WebUI.Controllers
                 {
                     return View(product);//stay on the current page
                 }
-                else
+
+                //from postedfile
+                if (file != null)
                 {
+                    productToEdit.Image = product.Id + Path.GetExtension(file.FileName);//remane to always have a unique file reference
+                    file.SaveAs(Server.MapPath("//Content//ProductImages//") + productToEdit.Image);//save the product image into the ProductImages folder
+                }
+                //
+
                     //update product to edit
                     productToEdit.Category = product.Category;
                     productToEdit.Description = product.Description;
-                    productToEdit.Image = product.Image;
+                    //productToEdit.Image = product.Image;//get overriden
                     productToEdit.Name = product.Name;
                     productToEdit.Price = product.Price;
 
-                    context.Commit();//refresh cache memory
+                    context.Commit();//refresh  memory
 
                     return RedirectToAction("Index");//redirect to Index page, to view the updated list
-                }
+                
 
             }
         }
