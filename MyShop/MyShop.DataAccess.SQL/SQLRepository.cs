@@ -21,7 +21,6 @@ namespace MyShop.DataAccess.SQL
             this.dbSet = context.Set<T>(); 
         }
 
-        
         public IQueryable<T> Collection()
         {
             //throw new NotImplementedException();
