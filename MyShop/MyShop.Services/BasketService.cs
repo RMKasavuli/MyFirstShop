@@ -45,7 +45,6 @@ namespace MyShop.Services
                     {
                         basket = CreateNewBasket(httpContext);
                     }
-
                 }
             }
             else
@@ -54,7 +53,6 @@ namespace MyShop.Services
                 {
                     basket = CreateNewBasket(httpContext);
                 }
-
             }
 
             return basket;
@@ -97,7 +95,6 @@ namespace MyShop.Services
             }
 
             basketContext.Commit();//update collection
-
         }
 
         public void RemoveFromBasket(HttpContextBase httpContext, string itemId)//itemId is the basket item Id, not the product Id
@@ -110,7 +107,6 @@ namespace MyShop.Services
                 basket.BasketItems.Remove(item);
                 basketContext.Commit();
             }
-
         }
 
         public List<BasketItemViewModel> GetBasketItems(HttpContextBase httpContext)
@@ -155,7 +151,6 @@ namespace MyShop.Services
                 model.BasketTotal = basketTotal ?? decimal.Zero;
 
                 return model;
-
             }
             else//if basket exists
             {
