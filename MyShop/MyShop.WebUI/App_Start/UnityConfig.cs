@@ -9,6 +9,8 @@ using MyShop.Services;
 using MyShop.WebUI.Controllers;
 using Unity.Injection;
 using MyShop.WebUI.Models;
+using Microsoft.AspNet.Identity;
+//using Microsoft.AspNet.Identity;
 
 namespace MyShop.WebUI
 {
@@ -56,7 +58,12 @@ namespace MyShop.WebUI
             container.RegisterType<IRepository<Basket>, SQLRepository<Basket>>();
             container.RegisterType<IRepository<BasketItem>, SQLRepository<BasketItem>>();
             container.RegisterType<IBasketService, BasketService>();
-           
+         
+            //container.RegisterType<IUserStore<BasketItem>, SQLRepository<BasketItem>>();
+            //container.RegisterType<IUserStore<Product>, SQLRepository<Product>>();
+           // container.RegisterType<IUserStore>(new InjectionConstructor());
+            container.RegisterType<AccountController>(new InjectionConstructor());
+
 
         }
     }
